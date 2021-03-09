@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diretivas: v-html</title>
+    </head>
+    <body>
+
+        <div id="directives">
+
+           <div v-html="headerHTML"></div>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue2-directives/dist/vue2-filters.min.js"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#directives',
+                data: {
+                    headerHTML: `
+                        <header>
+                            <h1 style="text-align: center;">Hcode Treinamentos</h1>
+
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" width="100" style="margin: auto 45%">
+                        </header>
+                    `
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

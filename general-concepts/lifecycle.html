@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ciclo de Vida</title>
+    </head>
+    <body>
+
+        <div id="lifecycle">
+
+            <h1>Hello {{ name }}</h1>
+            <span v-show="loading === true">Loading...</span>
+            <ul>
+                <li v-for="state in states">{{ state.nome }}</li>
+            </ul>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#lifecycle',
+                data: {
+                    name: 'Hcode Treinamentos',
+                    states: [],
+                    loading: true
+                },
+                beforeCreate() {
+                    this.loading = false
+                    console.log(performance.now(), 'beforeCreate');
+                },
+                created() {
+                    fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
+                    .then((response) => {
+                        response.json().then((data) => {
+                            console.log(data)
+                            this.states  = data
+                            this.loading = false
+                        })
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+                },
+                beforeMount() {
+                    console.log(performance.now(), 'beforeMount');
+                },
+                mounted() {
+                    console.log(performance.now(), 'mounted');
+                },
+                beforeUpdate() {
+                    console.log(performance.now(), 'beforeUpdate');
+                },
+                updated() {
+                    console.log(performance.now(), 'updated');
+                },
+                beforeDestroy() {
+                    console.log(performance.now(), 'beforeDestroy');
+                },
+                destroyed() {
+                    console.log(performance.now(), 'destroyed');
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

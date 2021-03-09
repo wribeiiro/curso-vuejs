@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diretivas: v-model</title>
+    </head>
+    <body>
+
+        <div id="directives">
+
+            <h3 :style=" { fontSize: textSize + 'px' } ">Hcode Treinamentos</h3>
+
+            <input type="text" placeholder="Digite o tamanho do texto" v-model="textSize">
+
+            <h4 :style=" { color: textColor } ">Que a Força esteja com você!</h4>
+
+            <input type="text" placeholder="Digite a cor do texto" v-model="textColor">
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue2-filters/dist/vue2-filters.min.js"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#directives',
+                data: {
+                    textSize: 30,
+                    textColor: 'red'
+                }
+            })
+
+        </script>
+
+    </body>
+</html>
