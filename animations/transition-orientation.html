@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Animações CSS - Orientação da transição</title>
+        <link rel="stylesheet" href="../node_modules/animate.css/animate.min.css">
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <style>
+            .fade-transition-enter-active, .fade-transition-leave-active {
+                transition: opacity .3s ease-in-out;
+            }
+            .fade-transition-enter, .fade-transition-leave-to {
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="transitions">
+
+            <h1>Hcode Treinamentos Animações</h1>
+
+            <input type="text" v-model="name">
+
+            <transition
+                name="fade-transition"
+                mode="out-in"
+            >
+                <h3 v-if="name.length > 10" key="success" class="alert-success">Nome válido</h3>
+                <h4 v-else key="error" class="alert-danger">Nome incorreto</h4>
+            </transition>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#transitions',
+                data: {
+                    name: 'George Lucas'
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

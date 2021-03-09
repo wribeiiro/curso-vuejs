@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eventos</title>
+    </head>
+    <body>
+
+        <div id="events">
+
+            <button v-on:click="alert('Hello World')">Clique Aqui</button>
+
+            <hr>
+
+            <button v-on:dblclick="add">Hcode Treinamentos</button>
+
+            <h4>Você clicou na Hcode {{ counter }} vezes</h4>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#events',
+                data: {
+                    counter: 0
+                },
+                methods: {
+                    add() {
+
+                        this.counter+=2;
+
+                    }
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

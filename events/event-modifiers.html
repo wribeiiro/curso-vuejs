@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eventos - Modificadores</title>
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    </head>
+    <body>
+
+        <div id="events">
+
+            <div class="container">
+
+                <h1>Hcode Treinamentos</h1>
+                
+                <form action="" class="form">
+
+                    <div class="row">
+
+                        <div class="col">
+
+                            <div class="form-group">
+                                
+                                <label for="">Nome</label>
+                                <input type="text" class="form-control" name="username" placeholder="Digite seu nome">
+
+                            </div>
+
+                        </div>
+
+                        <div class="col">
+
+                            <div class="form-group">
+                                
+                                <label for="">Email</label>
+                                <input type="email" class="form-control" name="email" placeholder="Digite seu email">
+                                
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="">Digite sua mensagem</label>
+                        <textarea class="form-control" name="message" id="" cols="30" rows="10"></textarea>
+
+                    </div>
+
+                    <button @click.prevent="send($event)" type="submit" class="btn btn-primary">Enviar o formulário</button>
+
+                </form>
+
+                <hr>
+
+                <a href="https://www.youtube.com/hcodebrasil" @click.prevent.once="alert('Olá')">YouTube Hcode</a>
+
+            </div>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#events',
+                data: {
+                    
+                },
+                methods: {
+                    send(event) {
+
+                        let form = event.target.form;
+
+                        let data = new FormData(form);
+
+                        for (let value of data.entries()) {
+
+                            console.log(`${value[0]}: ${value[1]}`);
+
+                        }
+
+                    }
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

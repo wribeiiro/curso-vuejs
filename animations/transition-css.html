@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Transições CSS</title>
+        <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <style>
+            .first-enter-active {
+                transition: opacity .5s ease;
+            }
+            .first-leave-active {
+                transition: opacity .5s ease-out;
+            }            
+            .first-enter, .first-leave-to {
+                opacity: 0;
+            }
+
+            /*  */
+            .second-enter-active {
+                transition: all .3s linear;
+            }
+            .second-leave-active {
+                transition: all .5s linear;
+            }
+            .second-enter, .second-leave-to {
+                opacity: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="transitions">
+
+            <transition name="first">
+                <h2 v-if="show">Hcode Treinamentos</h2>
+            </transition>
+
+            <hr>
+
+            <transition name="second">
+                <div v-if="show2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab eligendi veniam corrupti dignissimos labore et quos ipsum modi fuga. Sint accusamus iusto placeat facere quibusdam ipsa commodi laboriosam soluta totam.</div>
+            </transition>
+
+            <button @click="show2 = !show2">Clique aqui</button>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#transitions',
+                data: {
+                    show: true,
+                    show2: false
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Estilos com classes - Array</title>
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+        <style>
+            .selected {
+                text-decoration: underline;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="styles">
+
+            <table class="table">
+                <tr v-for="city in cities">
+                    <!-- <td v-bind:class="[selectedClass, statusClass]">{{ city }}</td> -->
+                    <td v-bind:class="[selectedClass, error ? statusErrorClass : statusClass]">{{ city }}</td>
+                </tr>
+            </table>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#styles',
+                data: {
+                    cities: ['Orlando', 'Londres', 'Sidney'],
+                    selectedClass: 'selected',
+                    statusClass: 'alert-success',
+                    statusErrorClass: 'alert-danger',
+                    error: false
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

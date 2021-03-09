@@ -9,59 +9,42 @@
         <link rel="stylesheet" href="assets/css/style.css">
     </head>
     <body>
-        
         <div id="hcode-blog">
-        
             <header>
-            
                 <div class="container">
-
                     <nav class="navbar">
-
                         <a href="#" class="text-center logo">
                             <img src="./assets/img/logo.svg" alt="Hcode Treinamentos">
                             Blog
                         </a>
-
                         <div v-if="isLogged" key="logged" class="login">
                             <h4>Seja bem-vindo {{ username }}</h4>
                             <a href="#" v-on:click.prevent="toggleLogin" class="logout bg-danger text-white">Fazer Logout</a>
                         </div>
-                        
                         <a href="#" v-on:click.prevent="toggleLogin" class="login btn-primary text-white" v-else key="notLogged">Fazer login</a>
-
                     </nav>
-
                 </div>
-
             </header>
 
             <section class="posts">
-
                 <div class="container">
-
+                    <div v-show="loading" class="text-white">
+                        Fetching data...
+                    </div>
                     <div class="row post-item" v-for="post in posts">
-
                         <div class="col-11">
-
-                            <img :src="post.img" :alt="post.imgTitle">
+                            <img :src="post.thumbnailUrl" :alt="post.title">
                             <h2>{{ post.title }}</h2>
                             <p>
-                                {{ post.post | truncate(200) }}
+                                {{ post.title | truncate(200) }}
                             </p>
-
                         </div>
-
                     </div>
-
                 </div>
-
             </section>
-
             <footer>
                 <p class="text-center">Visite: <a href="https://youtube.com/hcodebrasi">Hcode Treinamentos</a></p>
             </footer>
-
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -74,43 +57,26 @@
                 data: {
                     isLogged: false,
                     username: 'Wellisson Ribeiro',
-                    posts: [{
-                        img: './assets/img/post1.webp',
-                        imgTitle: 'Post 1',
-                        title: 'MySQL no Google Cloud SQL',
-                        post: `
-                            Este post é um é um guia passo a passo para você aprender a hospedar o seu banco de dados MySQL no Google Cloud SQL.
-                            Obviamente você precisa de uma conta no Google e um cartão de crédito para ativar o faturamento. Se for a primeira vez o Google irá te dar $300 para experimentar qualquer serviço, assim você pode aprender, conhecer e até avaliar os preços cobrados.
-                            Todos os serviços que você configura no GCloud ficam agrupados por projetos, então a primeira coisa a se fazer é criar ou selecionar um projeto.
-                        `
-                    }, {
-                        img: './assets/img/post2.webp',
-                        imgTitle: 'Post 2',
-                        title: 'Programação Funcional - Tudo o Que Você Precisa Saber! Artigo 1 de 10',
-                        post: `
-                            Olá Pessoal nesta série vamos falar sobre um importante Paradigma de Programação, A Programação Funcional e como ela é aplicada no JavaScript. Preparamos uma Série de 10 artigos para abordar com exemplos o que é a Programação Funcional, Esse é o primeiro artigo. Quais são os conceitos que fazem parte desse Paradigma e como Programar em JavaScript utilizando a Programação Funcional? Veja a resposta nesta série completa.
-
-                            Obs. ao Leitor: Por vezes caro leitor, você verá em nossos posts a sigla TL;DR quando ela estiver presente prepare-se, vêm texto longo por aí, assim o resumo do post será colocado no Parágrafo TL;DR algo como Too Long Didn't Read ou Texto Longo, Não Li.
-                        `
-                    }, {
-                        img: './assets/img/post3.webp',
-                        imgTitle: 'Post 3',
-                        title: 'Instalando e Configurando o PHP 7 e o Apache no Windows com Xampp',
-                        post: `
-                            PHP 7 é a linguagem por trás dos maiores sites do   mundo, entre eles, Facebook, Google, Wikipedia e muitos outros *. Preparamos um vídeo que faz parte do Curso Completo de PHP 7 da Hcode na Udemy para ensinar como instalar e configurar o PHP 7 e o Apache utilizando um facilitador para isso o XAMPP.
-
-                            Existe uma diferença entre Linguagem de Programação e Servidor Web, neste vídeo abordamos a diferença entre essas tecnologias e o que é um instalador como o XAMPP.
-                        `
-                    }]
+                    posts: [],
+                    loading: true
                 },
                 methods: {
                     toggleLogin() {
                         this.isLogged = !this.isLogged;
+                    },
+                    fetchBlog() {
+                        fetch('https://jsonplaceholder.typicode.com/photos')
+                            .then(response => response.json())
+                            .then((json) => {
+                                this.posts = json
+                                this.loading = false
+                            })
                     }
+                },
+                created() {
+                    this.fetchBlog()
                 }
             })
-
         </script>
-
     </body>
 </html>

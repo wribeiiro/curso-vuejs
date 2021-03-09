@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Diretivas Personalizadas</title>
+    </head>
+    <body>
+
+        <div id="directives">
+
+            <h4 v-upper>{{ name }}</h4>
+
+            <h2 v-capitalize>hello world {{ name }}</h2>
+
+            <!-- <h2 v-custom:parametro.mod1.mod2="'Informação'">{{ name }}</h2> -->
+
+            <h2 v-custom="{ direction: argumento, distance }">{{ name }}</h2>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue2-directives/dist/vue2-filters.min.js"></script>
+
+        <script>
+
+            Vue.directive('upper', {
+                inserted(el) {
+
+                    el.innerText = el.innerText.toUpperCase();
+
+                }
+            })
+
+            function setDirection(element, binding) {
+
+                element.style.margin = 0;
+
+                let direction = binding.value.direction.toLowerCase();
+                let value = binding.value.distance;
+
+                switch(direction) {
+
+                    case 'left':
+                    case 'right':
+                    case 'bottom':
+                    case 'top':
+
+                        let newDirection = direction.charAt(0).toUpperCase() + direction.slice(1);
+
+                        eval(`element.style.margin${newDirection} = value + 'px'`);
+
+                    break;
+
+                    default:
+                        console.error('Informe uma opção correta');
+
+                }
+
+            }
+
+            let app = new Vue({
+                el: '#directives',
+                data: {
+                    name: 'Hcode',
+                    argumento: 'left',
+                    distance: 150
+                },
+                directives: {
+                    /*
+                    Funções para diretivas
+                    capitalize: {
+                        bind(element) {
+                            console.log('BIND - Fui vinculado a um elemento');
+                        },
+                        inserted(element) {
+                            console.log('INSERTED - O elemento foi inserido na página');
+                            
+                            let words = element.innerText.split(' ');
+
+                            words.forEach((text, index) => {
+
+                                words[index] = text.charAt(0).toUpperCase() + text.slice(1);
+
+                            });
+
+                            element.innerText = words.join(' ');
+                        },
+                        update(element) {
+                            console.log('UPDATE - O elemento foi atualizado');
+                        },
+                        unbind(element) {
+                            console.log('UNBIND - O elemento foi desvinculado');
+                        },
+                        componentUpdated(element) {
+                            console.log('COMPONENT - O componente foi atualizado');
+                        }
+                    },
+                    */
+                    custom: {
+                        bind(element, binding, vnode) {
+
+                            setDirection(element, binding);
+
+                        },
+                        update(element, binding, vnode, oldvnode) {
+                            
+                            setDirection(element, binding);
+
+                        }
+                    }
+                }
+            })
+
+        </script>
+
+    </body>
+</html>

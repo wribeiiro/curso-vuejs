@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Eventos - Event Object</title>
+    </head>
+    <body>
+
+        <div id="events">
+
+            <button v-on:click="call($event)">Hcode Clique Aqui</button>
+
+            <hr>
+
+            <a href="https://www.hcode.com.br" v-on:click="call($event)">Site da Hcode</a>
+
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6"></script>
+
+        <script>
+
+            let app = new Vue({
+                el: '#events',
+                data: {
+                    
+                },
+                methods: {
+                    call(e) {
+
+                        e.preventDefault();
+
+                        console.log(e);
+
+                    }
+                }
+            })
+
+        </script>
+
+    </body>
+</html>
