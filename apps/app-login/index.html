@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Página de Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="./assets/plugins/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+        <link rel="stylesheet" href="./assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+        <link rel="stylesheet" href="./assets/dist/css/adminlte.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+        <style>
+            .links {
+                margin-top: 50px;
+            }
+            .link, .link:hover {
+                color: #f37520
+            }
+
+            .fade-login-enter, .fade-login-leave-to {
+              opacity: 0;
+            }
+            .fade-login-enter-active, .fade-login-leave-active {
+              transition: opacity ease-in-out .3s;
+            }
+        </style>
+    </head>
+    <body class="hold-transition login-page">
+        <div class="login-box" id="hcode-login">
+            <div class="login-logo">
+                <a href="#">
+                    <b>Hcode Treinamentos</b>
+                    <img src="./assets/img/logo.svg" alt="Hcode Treinamentos" style="width: 200px;">
+                </a>
+            </div>
+
+            <div class="row links">
+                <div class="col-12">
+                    <a href="#" class="link" @click.prevent="changeAction('login')">Login</a>
+                    <a href="#" class="link" style="position: absolute; right: 0" @click.prevent="changeAction('register')">Se cadastrar</a>
+                </div>
+            </div>
+
+            <hr>
+            
+            <div class="card">
+                <div class="card-body login-card-body">
+                    
+                    <div role="alert" :class="['alert', isFormSend ? 'alert-success' : 'alert-danger']" v-if="isFormSend">Formulário enviado com sucesso :)</div>
+                  
+                    <transition name="fade-login" mode="out-in">
+
+                      <div class="login" v-if="action == 'login'" key="login">
+
+                        <p class="login-box-msg">Fazer Login</p>
+
+                        <form method="post">
+                            <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Digite seu email">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="input-group mb-3">
+                            <input type="password" class="form-control" placeholder="Digite sua senha">
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-8">
+                                <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Lembrar de mim
+                                </label>
+                                </div>
+                            </div>
+                            
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-primary btn-block" @click.prevent="sendForm">Login</button>
+                            </div>
+                            
+                            </div>
+                        </form>
+
+                      </div>
+
+                      <div class="register" v-else key="register">
+
+                        <p class="login-box-msg">Se cadastrar</p>
+
+                        <form action="#" method="post">
+                            <div class="input-group mb-3">
+                              <input type="text" class="form-control" placeholder="Digite seu nome">
+                              <div class="input-group-append">
+                                <div class="input-group-text">
+                                  <span class="fas fa-user"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="input-group mb-3">
+                              <input type="email" class="form-control" placeholder="Digite seu email">
+                              <div class="input-group-append">
+                                <div class="input-group-text">
+                                  <span class="fas fa-envelope"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="input-group mb-3">
+                              <input type="password" class="form-control" placeholder="Digite sua senha">
+                              <div class="input-group-append">
+                                <div class="input-group-text">
+                                  <span class="fas fa-lock"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="input-group mb-3">
+                              <input type="password" class="form-control" placeholder="Confirme sua senha">
+                              <div class="input-group-append">
+                                <div class="input-group-text">
+                                  <span class="fas fa-lock"></span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-8">
+                                <div class="icheck-primary">
+                                  <input type="checkbox" id="agreeTerms" name="terms" value="agree">
+                                  <label for="agreeTerms">
+                                  Eu concordo com os <a href="#">termos</a>
+                                  </label>
+                                </div>
+                              </div>
+                              
+                              <div class="col-4">
+                                <button type="submit" class="btn btn-primary btn-block" @click.prevent="sendForm">Cadastrar</button>
+                              </div>
+                              
+                            </div>
+                        </form>
+
+                      </div>
+                    
+                    </transition>
+                      
+                </div>
+            </div>
+        </div>
+
+        <script src="./assets/plugins/jquery/jquery.min.js"></script>
+        <script src="./assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="./assets/dist/js/adminlte.min.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+        <script>
+
+          let app = new Vue({
+            el: '#hcode-login',
+            data: {
+              action: 'login',
+              isFormSend: false
+            },
+            methods: {
+              changeAction(action) {
+                this.action = action;
+              },
+              sendForm() {
+                this.isFormSend = true;
+              }
+            }
+          })
+
+        </script>
+
+    </body>
+</html>
