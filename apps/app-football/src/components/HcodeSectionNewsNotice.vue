@@ -42,6 +42,10 @@ export default {
 <style scoped>
 h2 {
     cursor: auto;
-    color: #000;
+    color: #7159C1;
+}
+
+p {
+    color: #fff;
 }
 </style>

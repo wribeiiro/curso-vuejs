@@ -42,6 +42,10 @@ export default {
 }
 .div-news h2 {
     cursor: pointer;
+    color: #7159C1;
+}
+
+.div-news p, span {
     color: #fff;
 }
 </style>

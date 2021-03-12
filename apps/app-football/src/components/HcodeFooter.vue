@@ -14,9 +14,13 @@ export default {
 
 <style scoped>
 footer {
-    margin-top: 40px;
+    position: fixed;
+    bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 0px;
     padding: 15px 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
+    background-color: #212025;
+    color: #7159C1;
+    width: 100%;
 }
 </style>

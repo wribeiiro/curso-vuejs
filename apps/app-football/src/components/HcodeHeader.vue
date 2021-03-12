@@ -3,7 +3,7 @@
         <div class="container">
             <nav class="navbar navbar-expand">
                 <a href="#" class="link navbar-brand mr-auto">
-                    <img src="./../assets/logo.svg" alt="Hcode Treinamentos" class="img d-inline-block align-top" id="logo"> Futebol Clube
+                    <!--<img src="./../assets/logo.svg" alt="Hcode Treinamentos" class="img d-inline-block align-top" id="logo">--> Futebol Clube
                 </a>
                 <div class="links mr-2">
                     <router-link to="/" class="btn mr-5">Início</router-link>
@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 header {
-    background-color: #000;
+    background-color: #121214;
 }
 #logo {
     width: 150px;
@@ -40,7 +40,7 @@ header {
     display: inline-flex;
 }
 .link {
-    color: #D48E23;
+    color: #7159C1;
     font-size: 30px;
     font-family: 'Rajdhani'
 }
@@ -52,7 +52,7 @@ header {
     box-shadow: none !important;
 }
 .link-active {
-    background-color: #fff;
-    color: #000 !important;
+    background-color: #7159C1;
+    color: #fff !important;
 }
 </style>

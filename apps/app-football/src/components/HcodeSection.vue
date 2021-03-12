@@ -55,4 +55,5 @@ export default {
 .fade-view-enter-active, .fade-view-leave-active {
     transition: opacity .5s ease-in-out;
 }
+
 </style>

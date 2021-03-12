@@ -40,7 +40,7 @@ section {
 
 h2 {
     margin: 25% 0;
-    color: #F6B64E;
+    color: #7159C1;
     background-color: rgba(0, 0, 0, 0.4);
     padding: 10px;
 }

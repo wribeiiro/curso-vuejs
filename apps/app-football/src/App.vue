@@ -55,5 +55,16 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Rajdhani&display=swap')
+@import url('https://fonts.googleapis.com/css?family=Rajdhani&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+}
+
 </style>
